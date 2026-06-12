@@ -52,10 +52,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'editor_zone.wsgi.application'
 
+if os.environ.get('VERCEL') == '1':
+    db_path = Path('/tmp') / 'db.sqlite3'
+    src_db = BASE_DIR / 'db.sqlite3'
+    if src_db.exists() and not db_path.exists():
+        import shutil
+        shutil.copy2(src_db, db_path)
+else:
+    db_path = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': db_path,
     }
 }
 
