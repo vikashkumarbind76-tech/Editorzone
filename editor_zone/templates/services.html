@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">Our Services</h1>
+            <p class="text-center" style="font-size: 1.2rem; color: #ccc; margin-bottom: 3rem;">
+                Professional video editing services tailored to your needs and budget
+            </p>
+
+            <!-- Basic Package -->
+            <div class="service-section">
+                <h2 style="color: #f5a623; text-align: center; margin: 3rem 0 2rem;">Basic Package</h2>
+                <div class="service-packages">
+                    {% for service in basic_services %}
+                    <div class="service-card">
+                        <h3>{{ service.name }}</h3>
+                        <div class="price">₹{{ service.price }}<span>/project</span></div>
+                        <p style="color: #ccc; margin-bottom: 1rem;">{{ service.description }}</p>
+                        <ul class="features">
+                            {% for feature in service.get_features_list %}
+                            <li><i class="fas fa-check"></i> {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">
+                            <i class="fas fa-clock"></i> Delivery: {{ service.delivery_time }}
+                        </p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn" style="margin: 0.5rem 0.25rem;">View Details</a>
+                        <a href="{% url 'booking_with_service' service.id %}" class="btn btn-success" style="margin: 0.5rem 0.25rem;">Book Now</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Professional Package -->
+            <div class="service-section">
+                <h2 style="color: #f5a623; text-align: center; margin: 3rem 0 2rem;">Professional Package</h2>
+                <div class="service-packages">
+                    {% for service in professional_services %}
+                    <div class="service-card popular">
+                        <h3>{{ service.name }}</h3>
+                        <div class="price">₹{{ service.price }}<span>/project</span></div>
+                        <p style="color: #ccc; margin-bottom: 1rem;">{{ service.description }}</p>
+                        <ul class="features">
+                            {% for feature in service.get_features_list %}
+                            <li><i class="fas fa-check"></i> {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">
+                            <i class="fas fa-clock"></i> Delivery: {{ service.delivery_time }}
+                        </p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn" style="margin: 0.5rem 0.25rem;">View Details</a>
+                        <a href="{% url 'booking_with_service' service.id %}" class="btn btn-success" style="margin: 0.5rem 0.25rem;">Book Now</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="service-section">
+                <h2 style="color: #f5a623; text-align: center; margin: 3rem 0 2rem;">Premium Package</h2>
+                <div class="service-packages">
+                    {% for service in premium_services %}
+                    <div class="service-card">
+                        <h3>{{ service.name }}</h3>
+                        <div class="price">₹{{ service.price }}<span>/project</span></div>
+                        <p style="color: #ccc; margin-bottom: 1rem;">{{ service.description }}</p>
+                        <ul class="features">
+                            {% for feature in service.get_features_list %}
+                            <li><i class="fas fa-check"></i> {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">
+                            <i class="fas fa-clock"></i> Delivery: {{ service.delivery_time }}
+                        </p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn" style="margin: 0.5rem 0.25rem;">View Details</a>
+                        <a href="{% url 'booking_with_service' service.id %}" class="btn btn-success" style="margin: 0.5rem 0.25rem;">Book Now</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Custom Solutions -->
+            <div class="text-center mt-3" style="margin-top: 4rem;">
+                <h2 class="section-title">Need Something Custom?</h2>
+                <p style="color: #ccc; margin-bottom: 2rem; font-size: 1.1rem;">
+                    We also offer custom solutions tailored to your specific requirements
+                </p>
+                <a href="{% url 'contact' %}" class="cta-button">
+                    <i class="fas fa-comments"></i> Get Custom Quote
+                </a>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>

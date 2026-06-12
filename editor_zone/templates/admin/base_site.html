@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Editor Zone Administration{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <i class="fas fa-video" style="color: #f5a623; margin-right: 5px;"></i>
+        Editor Zone Admin Panel
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

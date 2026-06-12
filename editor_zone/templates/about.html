@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">About Editor Zone</h1>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Where Your Vision Comes to Life</h2>
+                    <p>
+                        Editor Zone is a premier video editing service dedicated to transforming your raw footage into compelling visual stories. Founded by a team of passionate video professionals, we combine creativity, technical expertise, and cutting-edge technology to deliver exceptional results.
+                    </p>
+                    <p>
+                        Our mission is to make professional-quality video editing accessible to everyone, from individual creators to large corporations. We believe that every project, regardless of size or budget, deserves the highest level of attention and quality.
+                    </p>
+                    <p>
+                        With years of experience in the industry, we have worked on diverse projects ranging from corporate videos and documentaries to social media content and feature films. Our commitment to excellence and client satisfaction has made us a trusted partner for creators worldwide.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Video editing professional at work">
+                </div>
+            </div>
+
+            <!-- Our Values -->
+            <div class="values-section">
+                <h2 class="section-title">Our Core Values</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>We never compromise on quality. Every project receives meticulous attention to detail and professional craftsmanship.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We stay ahead of industry trends and embrace new technologies to provide cutting-edge solutions.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Partnership</h3>
+                        <p>We work closely with our clients, ensuring their vision is understood and exceeded in the final product.</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-section">
+                <h2 class="section-title">Our Track Record</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2 class="section-title">Our Expert Team</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 style="color: #f5a623;">Professional Video Editors</h3>
+                        <p>
+                            Our team consists of highly skilled video editors, motion graphics artists, colorists, and sound designers. Each team member brings years of industry experience and a passion for storytelling through visual media.
+                        </p>
+                        <p>
+                            We continuously invest in our team's professional development, ensuring they stay updated with the latest techniques, software, and industry standards. This commitment to growth allows us to deliver innovative solutions that exceed expectations.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Video editing team collaboration">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Section -->
+            <div class="technology-section">
+                <h2 class="section-title">Cutting-Edge Technology</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3>Professional Software</h3>
+                        <p>Adobe Premiere Pro, After Effects, DaVinci Resolve, and other industry-standard editing software.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>High-Performance Systems</h3>
+                        <p>State-of-the-art workstations with powerful processors and professional-grade graphics cards.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Secure Cloud Storage</h3>
+                        <p>Enterprise-level cloud infrastructure ensuring your files are safe and accessible worldwide.</p>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center" style="margin-top: 4rem;">
+                <h2 class="section-title">Ready to Work with Us?</h2>
+                <p style="color: #ccc; margin-bottom: 2rem; font-size: 1.2rem;">
+                    Let's discuss your project and see how we can bring your vision to life
+                </p>
+                <a href="{% url 'booking' %}" class="cta-button" style="margin-right: 1rem;">
+                    <i class="fas fa-rocket"></i> Start Your Project
+                </a>
+                <a href="{% url 'contact' %}" class="btn">
+                    <i class="fas fa-envelope"></i> Get in Touch
+                </a>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<header class="header">
+    <div class="navbar">
+        <div class="nav-brand">
+            <a href="{% url 'home' %}">
+                <h2>Editor Zone</h2>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'booking' %}">Book Now</a></li>
+                <li class="user-profile">
+                    <i class="fas fa-user"></i> {{ user.username }}
+                </li>
+                <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="logout-btn" style="background: var(--gradient-secondary) !important; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;">Login</a></li>
+            {% endif %}
+        </ul>
+        <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>

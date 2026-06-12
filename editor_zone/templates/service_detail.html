@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service.name }} - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <div class="text-center mb-3">
+                <a href="{% url 'services' %}" class="btn" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-left"></i> Back to Services
+                </a>
+            </div>
+
+            <div class="service-detail-container">
+                <div class="service-detail-card">
+                    <div class="service-header">
+                        <h1 class="section-title">{{ service.name }}</h1>
+                        <div class="service-meta">
+                            <span class="package-badge package-{{ service.package_type }}">
+                                {{ service.get_package_type_display }} Package
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="service-content">
+                        <div class="service-main">
+                            <div class="service-description">
+                                <h3 style="color: #f5a623; margin-bottom: 1rem;">Service Description</h3>
+                                <p style="color: #ccc; font-size: 1.1rem; line-height: 1.8;">
+                                    {{ service.description }}
+                                </p>
+                            </div>
+
+                            <div class="service-features" style="margin-top: 2rem;">
+                                <h3 style="color: #f5a623; margin-bottom: 1rem;">What's Included</h3>
+                                <ul class="features">
+                                    {% for feature in service.get_features_list %}
+                                    <li><i class="fas fa-check-circle"></i> {{ feature }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-sidebar">
+                            <div class="service-card" style="text-align: center;">
+                                <div class="price" style="margin-bottom: 1rem;">
+₹{{ service.price }}
+                                </div>
+                                
+                                <div style="margin-bottom: 1.5rem;">
+                                    <p style="color: #28a745; font-weight: bold;">
+                                        <i class="fas fa-clock"></i> {{ service.delivery_time }}
+                                    </p>
+                                </div>
+
+                                <a href="{% url 'booking_with_service' service.id %}" class="btn btn-success" style="width: 100%; margin-bottom: 1rem;">
+                                    <i class="fas fa-shopping-cart"></i> Book This Service
+                                </a>
+                                
+                                <a href="{% url 'contact' %}" class="btn" style="width: 100%;">
+                                    <i class="fas fa-comments"></i> Ask Questions
+                                </a>
+                            </div>
+
+                            <div class="service-guarantee" style="margin-top: 2rem;">
+                                <h4 style="color: #28a745; text-align: center; margin-bottom: 1rem;">
+                                    <i class="fas fa-shield-alt"></i> Our Guarantee
+                                </h4>
+                                <ul style="list-style: none; color: #ccc;">
+                                    <li><i class="fas fa-check" style="color: #28a745;"></i> 100% Satisfaction Guarantee</li>
+                                    <li><i class="fas fa-check" style="color: #28a745;"></i> Unlimited Revisions</li>
+                                    <li><i class="fas fa-check" style="color: #28a745;"></i> Fast Delivery</li>
+                                    <li><i class="fas fa-check" style="color: #28a745;"></i> Professional Quality</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Services -->
+            <div class="similar-services" style="margin-top: 4rem;">
+                <h2 class="section-title">Related Services</h2>
+                <div class="text-center">
+                    <a href="{% url 'services' %}" class="btn cta-button">
+                        <i class="fas fa-th-large"></i> View All Services
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    
+    <style>
+        .service-detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-detail-card {
+            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 2px solid #f5a623;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .package-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .package-basic {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .package-professional {
+            background: linear-gradient(135deg, #f5a623, #e69500);
+            color: white;
+        }
+
+        .package-premium {
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .service-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .service-detail-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+    
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>

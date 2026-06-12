@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">Our Portfolio</h1>
+            <p class="text-center" style="font-size: 1.2rem; color: #ccc; margin-bottom: 3rem;">
+                Discover our latest video editing projects and see the quality of work we deliver
+            </p>
+
+            {% if portfolio_items %}
+            <div class="portfolio-grid">
+                {% for item in portfolio_items %}
+                <div class="portfolio-item">
+                    <img src="{{ item.image_url }}" alt="{{ item.title }}">
+                    <div class="portfolio-info">
+                        <h3>{{ item.title }}</h3>
+                        <div class="portfolio-meta">
+                            <span><i class="fas fa-tag"></i> {{ item.project_type }}</span>
+                            <span><i class="fas fa-clock"></i> {{ item.completion_time }}</span>
+                        </div>
+                        {% if item.client_name %}
+                        <p><strong>Client:</strong> {{ item.client_name }}</p>
+                        {% endif %}
+                        <p>{{ item.description }}</p>
+                        <a href="{% url 'booking' %}" class="btn btn-success">
+                            <i class="fas fa-play"></i> Start Similar Project
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center">
+                <i class="fas fa-images" style="font-size: 5rem; color: #f5a623; margin-bottom: 1rem;"></i>
+                <h3 style="color: #f5a623;">No Portfolio Items Yet</h3>
+                <p style="color: #ccc;">We're working on adding our latest projects. Check back soon!</p>
+            </div>
+            {% endif %}
+
+            <!-- Call to Action -->
+            <div class="text-center mt-3" style="margin-top: 3rem;">
+                <h2 class="section-title">Ready to Create Something Amazing?</h2>
+                <p style="color: #ccc; margin-bottom: 2rem;">
+                    Let's discuss your project and bring your vision to life
+                </p>
+                <a href="{% url 'booking' %}" class="cta-button">
+                    <i class="fas fa-rocket"></i> Start Your Project
+                </a>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>

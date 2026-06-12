@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <div class="confirmation-container">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                
+                <h1>Booking Confirmed!</h1>
+                <p>Your project has been successfully booked. Our team will contact you shortly to begin the process.</p>
+                
+                <div class="booking-details">
+                    <h3><i class="fas fa-info-circle"></i> Booking Details</h3>
+                    <p><strong>Project Title:</strong> {{ booking.project_title }}</p>
+                    <p><strong>Service:</strong> {{ booking.service.name }} ({{ booking.service.get_package_type_display }})</p>
+                    <p><strong>Total Cost:</strong> ₹{{ booking.total_cost }}</p>
+                    <p><strong>Deadline:</strong> {{ booking.deadline|date:"F d, Y" }}</p>
+                    <p><strong>Estimated Delivery:</strong> {{ booking.service.delivery_time }}</p>
+                    <p><strong>Status:</strong> <span style="color: #f5a623; font-weight: bold;">{{ booking.get_status_display }}</span></p>
+                    {% if booking.special_requirements %}
+                    <p><strong>Special Requirements:</strong> {{ booking.special_requirements }}</p>
+                    {% endif %}
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3 style="color: #28a745; margin-bottom: 1rem;">What's Next?</h3>
+                    <ul style="text-align: left; color: #ccc;">
+                        <li style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-phone" style="color: #28a745;"></i> 
+                            Our team will contact you within 24 hours
+                        </li>
+                        <li style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-folder-open" style="color: #28a745;"></i> 
+                            We'll discuss your project requirements in detail
+                        </li>
+                        <li style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-upload" style="color: #28a745;"></i> 
+                            You'll receive instructions for file upload
+                        </li>
+                        <li style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-play" style="color: #28a745;"></i> 
+                            Work begins on your project
+                        </li>
+                        <li style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: #28a745;"></i> 
+                            Final delivery and revisions if needed
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="{% url 'home' %}" class="btn btn-success" style="margin-right: 1rem;">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 123, 255, 0.1); border-radius: 10px; border-left: 4px solid #007bff;">
+                    <p style="margin: 0; color: #ccc;">
+                        <i class="fas fa-info-circle" style="color: #007bff;"></i>
+                        <strong>Booking ID:</strong> #{{ booking.id }} - Please keep this for your records
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    
+    <script>
+        // Auto-hide success message after 5 seconds
+        setTimeout(function() {
+            const messages = document.querySelector('.messages');
+            if (messages) {
+                messages.style.opacity = '0';
+                setTimeout(() => messages.remove(), 300);
+            }
+        }, 5000);
+    </script>
+    
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Zone - Professional Video Editing Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Editor Zone</h1>
+                <p>Where Your Vision Comes to Life</p>
+                <a href="{% url 'booking' %}" class="cta-button">
+                    <i class="fas fa-play"></i> Get Started with Your Project
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section">
+            <h2 class="section-title">Our Featured Services</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Video Editing</h3>
+                    <p>Professional video editing with seamless transitions, color correction, and storytelling
+                        techniques that bring your vision to life.</p>
+                    <a href="{% url 'services' %}" class="btn">Learn More</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Motion Graphics</h3>
+                    <p>Stunning motion graphics and animations that add a dynamic element to your videos and capture
+                        audience attention.</p>
+                    <a href="{% url 'services' %}" class="btn">Learn More</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Grading</h3>
+                    <p>Expert color grading to enhance the mood, atmosphere, and visual appeal of your footage with
+                        cinematic quality.</p>
+                    <a href="{% url 'services' %}" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Portfolio -->
+        {% if featured_portfolio %}
+        <section class="section">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="portfolio-grid">
+                {% for item in featured_portfolio %}
+                <div class="portfolio-item">
+                    <img src="{{ item.image_url }}" alt="{{ item.title }}">
+                    <div class="portfolio-info">
+                        <h3>{{ item.title }}</h3>
+                        <div class="portfolio-meta">
+                            <span><i class="fas fa-tag"></i> {{ item.project_type }}</span>
+                            <span><i class="fas fa-clock"></i> {{ item.completion_time }}</span>
+                        </div>
+                        <p>{{ item.description|truncatewords:20 }}</p>
+                        <a href="{% url 'portfolio' %}" class="btn btn-success">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-3">
+                <a href="{% url 'portfolio' %}" class="btn cta-button">
+                    <i class="fas fa-images"></i> View All Portfolio
+                </a>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Why Choose Us -->
+        <section class="section">
+            <h2 class="section-title">Why Choose Editor Zone?</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Professional Quality</h3>
+                    <p>Industry-standard equipment and techniques ensuring broadcast-quality results for every project.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Experienced professionals with years of expertise in video production and post-production
+                        services.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support to assist you throughout your project journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section text-center">
+            <h2 class="section-title">Ready to Start Your Project?</h2>
+            <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 2rem;">
+                Transform your raw footage into compelling stories with our professional video editing services.
+            </p>
+            <a href="{% url 'booking' %}" class="cta-button">
+                <i class="fas fa-calendar"></i> Book a Consultation
+            </a>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

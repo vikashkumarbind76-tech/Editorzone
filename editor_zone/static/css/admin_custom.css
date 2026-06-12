@@ -1,0 +1,262 @@
+/* Custom Admin Premium Theme - Editor Zone */
+
+/* Font Awesome Import */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* Root Variables */
+:root {
+    --primary-color: #f5a623;
+    --primary-hover: #ff8c00;
+    --dark-bg: #121212;
+    --card-bg: #1c1c1c;
+    --card-hover: #262626;
+    --text-main: #ffffff;
+    --text-muted: #aaaaaa;
+    --border-color: #333333;
+    --accent-blue: #007bff;
+    --accent-green: #28a745;
+    --accent-red: #dc3545;
+    --header-bg: rgba(28, 28, 28, 0.95);
+}
+
+/* Base Body Styles */
+body {
+    background-color: var(--dark-bg) !important;
+    color: var(--text-main) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Links */
+a:link, a:visited {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover, a:active {
+    color: var(--primary-hover) !important;
+}
+
+/* Header & Navbar Styles */
+#header {
+    background: var(--header-bg) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    color: var(--text-main) !important;
+    padding: 1rem 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+#branding h1 {
+    color: var(--primary-color) !important;
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+    font-weight: bold !important;
+}
+
+#branding h1 a {
+    color: var(--primary-color) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+#user-tools {
+    color: var(--text-muted) !important;
+    font-size: 0.9rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+#user-tools a {
+    color: var(--text-main) !important;
+    font-weight: 500 !important;
+}
+
+#user-tools a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: #181818 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.8rem 2rem !important;
+    color: var(--text-muted) !important;
+    font-size: 0.85rem !important;
+}
+
+.breadcrumbs a {
+    color: var(--text-muted) !important;
+}
+
+.breadcrumbs a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Dashboard Modules (App containers) */
+.module {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    margin-bottom: 2rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.module h2, .module caption {
+    background: linear-gradient(135deg, #2c2c2c, #1a1a1a) !important;
+    color: var(--primary-color) !important;
+    padding: 0.8rem 1.2rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Model Tables */
+table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background: var(--card-bg) !important;
+}
+
+th {
+    background: #222222 !important;
+    color: var(--text-main) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 2px solid var(--border-color) !important;
+    padding: 0.8rem 1.2rem !important;
+}
+
+td {
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.8rem 1.2rem !important;
+    color: #dddddd !important;
+}
+
+tr.row1 {
+    background: #1e1e1e !important;
+}
+
+tr.row2 {
+    background: #161616 !important;
+}
+
+tr:hover {
+    background: #252525 !important;
+}
+
+/* Form Controls & Inputs */
+input[type=text], input[type=password], input[type=email], input[type=number], select, textarea {
+    background: #121212 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    color: var(--text-main) !important;
+    padding: 0.6rem !important;
+    font-size: 0.9rem !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color) !important;
+    outline: none !important;
+    box-shadow: 0 0 8px rgba(245, 166, 35, 0.2) !important;
+}
+
+/* Buttons */
+.button, input[type=submit], input[type=button], .submit-row a.deletelink {
+    background: var(--accent-blue) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 0.6rem 1.5rem !important;
+    font-weight: bold !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    display: inline-block !important;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: #0056b3 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3) !important;
+}
+
+.button.default, input[type=submit].default {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover)) !important;
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background: linear-gradient(135deg, var(--primary-hover), #e67e00) !important;
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.4) !important;
+}
+
+.submit-row a.deletelink {
+    background: var(--accent-red) !important;
+}
+
+.submit-row a.deletelink:hover {
+    background: #bd2130 !important;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3) !important;
+}
+
+/* Changelist Filters (Sidebar) */
+#changelist-filter {
+    background: #181818 !important;
+    border-left: 1px solid var(--border-color) !important;
+    border-radius: 0 12px 12px 0 !important;
+}
+
+#changelist-filter h2 {
+    background: #222222 !important;
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.8rem 1.2rem !important;
+}
+
+#changelist-filter ul li.selected a {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    border-left: 3px solid var(--primary-color) !important;
+    padding-left: 5px !important;
+}
+
+/* Sidebar navigation toggle */
+#nav-sidebar {
+    background: var(--card-bg) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+.toggle-nav-sidebar {
+    background: #2c2c2c !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Forms views, detail boxes */
+.form-row {
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 1.2rem !important;
+}
+
+.aligned label {
+    color: var(--text-muted) !important;
+    font-weight: 600 !important;
+}
+
+.submit-row {
+    background: #181818 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}

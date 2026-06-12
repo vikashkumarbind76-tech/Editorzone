@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - Editor Zone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">Book Your Project</h1>
+            <p class="text-center" style="color: #ccc; margin-bottom: 3rem;">
+                Fill out the form below to start your video editing project
+            </p>
+
+            <div class="form-container">
+                <form method="post" id="bookingForm">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="service_id">Select Service *</label>
+                        <select name="service_id" id="service_id" required>
+                            <option value="">Choose a service...</option>
+                            {% for service in services %}
+                            <option value="{{ service.id }}" 
+                                    data-price="{{ service.price }}" 
+                                    data-delivery="{{ service.delivery_time }}"
+                                    {% if selected_service and selected_service.id == service.id %}selected{% endif %}>
+                                {{ service.name }} - ₹{{ service.price }} ({{ service.get_package_type_display }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="price-calculator">
+                        <div class="price-display" id="priceDisplay">
+                            Select a service to see pricing
+                        </div>
+                        <div class="estimated-time" id="deliveryTime"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project_title">Project Title *</label>
+                        <input type="text" name="project_title" id="project_title" required 
+                               placeholder="Enter your project title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project_description">Project Description *</label>
+                        <textarea name="project_description" id="project_description" required 
+                                  placeholder="Describe your project requirements, style preferences, and any specific instructions..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">Project Deadline *</label>
+                        <input type="date" name="deadline" id="deadline" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special_requirements">Special Requirements (Optional)</label>
+                        <textarea name="special_requirements" id="special_requirements" 
+                                  placeholder="Any additional requirements, file formats, or special requests..."></textarea>
+                    </div>
+
+                    <div class="booking-summary" style="background: rgba(40, 167, 69, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid #28a745;">
+                        <h3 style="color: #28a745; margin-bottom: 1rem;">
+                            <i class="fas fa-file-contract"></i> Booking Summary
+                        </h3>
+                        <div id="summaryContent">
+                            <p style="color: #ccc;">Please select a service to see the summary</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn cta-button" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;">
+                        <i class="fas fa-check-circle"></i> Book Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- Service Preview -->
+            <div class="service-preview" style="margin-top: 3rem;">
+                <h2 class="section-title">Why Choose Our Services?</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3>Professional Quality</h3>
+                        <p>Industry-standard editing with attention to detail</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Fast Turnaround</h3>
+                        <p>Quick delivery without compromising on quality</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <h3>Unlimited Revisions</h3>
+                        <p>We'll work until you're 100% satisfied</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSelect = document.getElementById('service_id');
+            const priceDisplay = document.getElementById('priceDisplay');
+            const deliveryTime = document.getElementById('deliveryTime');
+            const summaryContent = document.getElementById('summaryContent');
+            const deadlineInput = document.getElementById('deadline');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            deadlineInput.setAttribute('min', today);
+            
+            // Update price and summary when service changes
+            serviceSelect.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                
+                if (selectedOption.value) {
+                    const price = selectedOption.getAttribute('data-price');
+                    const delivery = selectedOption.getAttribute('data-delivery');
+                    const serviceName = selectedOption.text.split(' - ')[0];
+                    
+priceDisplay.textContent = `₹${price}`;
+                    deliveryTime.textContent = `Estimated Delivery: ${delivery}`;
+                    
+                    summaryContent.innerHTML = `
+                        <p><strong>Service:</strong> ${serviceName}</p>
+<p><strong>Price:</strong> ₹${price}</p>
+                        <p><strong>Delivery Time:</strong> ${delivery}</p>
+                        <p style="color: #28a745;"><i class="fas fa-shield-alt"></i> 100% Satisfaction Guarantee</p>
+                    `;
+                } else {
+                    priceDisplay.textContent = 'Select a service to see pricing';
+                    deliveryTime.textContent = '';
+                    summaryContent.innerHTML = '<p style="color: #ccc;">Please select a service to see the summary</p>';
+                }
+            });
+            
+            // Initialize if service is pre-selected
+            if (serviceSelect.value) {
+                serviceSelect.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+    
+    <script src="{% load static %}{% static 'js/main.js' %}"></script>
+</body>
+</html>
