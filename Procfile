@@ -1,1 +1,1 @@
-web: gunicorn --chdir editor_zone editor_zone.wsgi:application
+web: gunicorn editor_zone.wsgi:application
